@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Dashboard</title>
+<style>
+body {
+	    background-color: #839192;
+}
+</style>
+<script type="text/javascript">
+var source = new EventSource("/stream");
+source.addEventListener('dbuiupdate', function(event) {
+    var data = JSON.parse(event.data);
+		console.log(data)
+		div_id = data["div_id"]
+		div_html = data["div_html"]
+		document.getElementById(div_id).innerHTML = div_html
+		console.log(div_id)
+		console.log(div_html)
+    // do what you want with this data
+}, false);
+</script>
+</head>
+<body>
+	<h1>${date}</h1>
+	<div id="one">data here</div>
+	<div id="two">data here</div>
+	<div id="three">data here</div>
+</body>
